@@ -1,0 +1,23 @@
+{
+  "name": "jquery-to-react",
+  "version": "1.0.0",
+  "description": "This project is a simple To Do List example of how to go about incrementally refactoring your JavaScript application to the [React](https://reactjs.org/) framework and how you can use [Redux](https://redux.js.org/) to share state between React and your original JavaScript.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stevenjackson/jquery-to-react.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stevenjackson/jquery-to-react/issues"
+  },
+  "homepage": "https://github.com/stevenjackson/jquery-to-react#readme"
+}
