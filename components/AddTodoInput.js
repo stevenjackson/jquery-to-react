@@ -10,7 +10,7 @@ class AddTodoInput extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    addTodo(this.state.text);
+    store.dispatch(addTodo(this.state.text));
     this.setState( {text: ""} );
   }
 
