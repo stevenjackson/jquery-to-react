@@ -1,6 +1,5 @@
 let todoIdGenerator = 0;
 const initialState = {
-  hasCompletedItems: false,
   todos: []
 };
 
@@ -18,17 +17,11 @@ function removeTodo(todo) {
   }
 }
 
-function setHasCompletedItems(hasCompletedItems = false) {
-  return {
-    type: 'SET_HAS_COMPLETED_ITEMS',
-    hasCompletedItems: hasCompletedItems
-  };
-}
-
-function todoCompleted(todo) {
+function todoCompleted(todo, completed) {
   return {
     type: 'TODO_COMPLETED',
-    todo: todo
+    todo: todo,
+    completed: completed
   };
 }
 
@@ -40,10 +33,6 @@ function removeCompletedItems() {
 
 function reducer(state = initialState, action) {
   switch(action.type) {
-    case 'SET_HAS_COMPLETED_ITEMS':
-      return Object.assign({}, state, {
-        hasCompletedItems: action.hasCompletedItems
-      });
     case 'ADD_TODO':
       return Object.assign({}, state, {
         todos: state.todos.concat(action.todo)
@@ -51,14 +40,14 @@ function reducer(state = initialState, action) {
     case 'REMOVE_TODO':
       return Object.assign({}, state, {
         todos: state.todos.filter((todo) =>
-            todo.id != action.todo.id
+          todo.id != action.todo.id
         )
       });
     case 'TODO_COMPLETED':
       return Object.assign({}, state, {
         todos: state.todos.map(function(todo) {
             if(todo.id === action.todo.id) {
-              return Object.assign({}, todo, { completed: true });
+              return Object.assign({}, todo, { completed: action.completed });
             } else {
               return todo;
             }

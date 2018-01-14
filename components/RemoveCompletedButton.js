@@ -13,13 +13,14 @@ class UnconnectedRemoveCompletedButton extends React.Component {
 
   removeCheckedItems() {
     store.dispatch(removeCompletedItems())
-    maybeHideDeleteAll();
   }
 }
 
 function mapStateToProps(state) {
   return {
-    show: state.hasCompletedItems
+    show: state.todos.find((todo) =>
+      todo.completed
+    )
   }
 }
 
