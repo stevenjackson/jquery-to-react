@@ -2,13 +2,18 @@ class UnconnectedRemoveCompletedButton extends React.Component {
   render() {
     if(this.props.show) {
       return(
-        <button id="clearCompleted" className="btn btn-outline-secondary mx-1"  onClick={removeCheckedItems}>
+        <button id="clearCompleted" className="btn btn-outline-secondary mx-1"  onClick={this.removeCheckedItems}>
             Remove Completed
         </button>
       );
     } else {
       return null;
     }
+  }
+
+  removeCheckedItems() {
+    store.dispatch(removeCompletedItems())
+    maybeHideDeleteAll();
   }
 }
 

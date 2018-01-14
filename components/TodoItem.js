@@ -8,12 +8,13 @@ class TodoItem extends React.Component {
 
   toggleComplete() {
     this.setState({ completed: !this.state.completed })
+    store.dispatch(todoCompleted(this.props.todo));
     maybeHideDeleteAll();
   }
 
   delete() {
-    maybeHideDeleteAll();
     store.dispatch(removeTodo(this.props.todo));
+    maybeHideDeleteAll();
   }
 
   render() {

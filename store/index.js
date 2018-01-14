@@ -25,6 +25,19 @@ function setHasCompletedItems(hasCompletedItems = false) {
   };
 }
 
+function todoCompleted(todo) {
+  return {
+    type: 'TODO_COMPLETED',
+    todo: todo
+  };
+}
+
+function removeCompletedItems() {
+  return {
+    type: 'REMOVE_COMPLETED_ITEMS'
+  }
+}
+
 function reducer(state = initialState, action) {
   switch(action.type) {
     case 'SET_HAS_COMPLETED_ITEMS':
@@ -39,6 +52,22 @@ function reducer(state = initialState, action) {
       return Object.assign({}, state, {
         todos: state.todos.filter((todo) =>
             todo.id != action.todo.id
+        )
+      });
+    case 'TODO_COMPLETED':
+      return Object.assign({}, state, {
+        todos: state.todos.map(function(todo) {
+            if(todo.id === action.todo.id) {
+              return Object.assign({}, todo, { completed: true });
+            } else {
+              return todo;
+            }
+        })
+      });
+    case 'REMOVE_COMPLETED_ITEMS':
+      return Object.assign({}, state, {
+        todos: state.todos.filter((todo) =>
+            todo.completed !== true
         )
       });
     default:
