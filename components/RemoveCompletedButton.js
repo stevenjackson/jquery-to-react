@@ -1,4 +1,4 @@
-class RemoveCompletedButton extends React.Component {
+class UnconnectedRemoveCompletedButton extends React.Component {
   render() {
     if(this.props.show) {
       return(
@@ -12,8 +12,12 @@ class RemoveCompletedButton extends React.Component {
   }
 }
 
-RemoveCompletedButton.defaultProps = {
-  show: false
-};
+function mapStateToProps(state) {
+  return {
+    show: state.hasCompletedItems
+  }
+}
 
-ReactDOM.render(<RemoveCompletedButton/>, document.querySelector('[data-react-component="RemoveCompletedButton"]'));
+var RemoveCompletedButton = ReactRedux.connect(mapStateToProps)(UnconnectedRemoveCompletedButton);
+
+ReactDOM.render(<RemoveCompletedButton store={store}/>, document.querySelector('[data-react-component="RemoveCompletedButton"]'));
