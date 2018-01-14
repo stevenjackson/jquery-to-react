@@ -45,9 +45,9 @@ function  removeCheckedItems(e) {
     maybeHideDeleteAll();
 }
 
-
 function maybeHideDeleteAll() {
   var completedItems = $('#todos input:checked').length;
+  store.dispatch(setHasCompletedItems(completedItems > 0));
   ReactDOM.render(
     React.createElement(RemoveCompletedButton, { show: completedItems > 0 }),
     document.querySelector('[data-react-component="RemoveCompletedButton"]')
