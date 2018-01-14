@@ -1,7 +1,7 @@
-class TodoList extends React.Component {
+class UnconnectedTodoList extends React.Component {
   render() {
     const items = this.props.todos.map((todo) =>
-      <TodoItem key={todo.id} todoId={todo.id} text={todo.text} />
+      <TodoItem key={todo.id} todo={todo}/>
     );
     return(
       <ul id="todos" className="list-group my-2">
@@ -11,6 +11,12 @@ class TodoList extends React.Component {
   }
 }
 
-var todos = [{ id: 1, text: "foo" }, { id: 2, text: "bar" }]
+function mapStateToProps(state) {
+  return {
+    todos: state.todos
+  }
+}
 
-ReactDOM.render(<TodoList todos={todos}/>, document.querySelector('[data-react-component="TodoList"]'));
+var TodoList = ReactRedux.connect(mapStateToProps)(UnconnectedTodoList);
+
+ReactDOM.render(<TodoList store={store}/>, document.querySelector('[data-react-component="TodoList"]'));
